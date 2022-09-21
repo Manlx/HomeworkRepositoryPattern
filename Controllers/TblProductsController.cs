@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OrgOffering.Data;
 using OrgOffering.Models;
+using OrgOffering.Repository;
 
 namespace OrgOffering.Controllers
 {
@@ -19,10 +20,14 @@ namespace OrgOffering.Controllers
             _context = context;
         }
 
-        // GET: TblProducts
+        // GET: Products
         public async Task<IActionResult> Index()
         {
-            return View(await _context.TblProduct.ToListAsync());
+            tblProductRepository tblProductRepository = new tblProductRepository();
+
+            var results = tblProductRepository.GetAll();
+
+            return View(results);
         }
 
         // GET: TblProducts/Details/5
@@ -150,5 +155,7 @@ namespace OrgOffering.Controllers
         {
             return _context.TblProduct.Any(e => e.ProductId == id);
         }
+        
+
     }
 }
