@@ -528,3 +528,4 @@ FodyWeavers.xsd
 appsettings.json
 *.udl
 appsettings.*
+/CreateDBTemplate.sql
